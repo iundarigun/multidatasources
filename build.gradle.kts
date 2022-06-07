@@ -32,8 +32,6 @@ dependencies {
 
 	implementation("org.springframework.cloud:spring-cloud-starter-sleuth")
 	implementation("org.springdoc:springdoc-openapi-ui:$openapiUI")
-
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 dependencyManagement {
