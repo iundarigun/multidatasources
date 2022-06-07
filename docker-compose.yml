@@ -1,0 +1,17 @@
+version: '3'
+services:
+  postgres-database:
+    image: postgres
+    environment:
+      - POSTGRES_USER=twodatasources
+      - POSTGRES_PASSWORD=twodatasources
+    ports:
+      - 5432:5432
+  mysql-database:
+    image: mysql:latest
+    platform: 'linux/amd64'
+    environment:
+      - MYSQL_DATABASE=twodatasources
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - 3306:3306
