@@ -16,10 +16,10 @@ class CompanyService(
     private val employeeRepository: EmployeeRepository
 ) {
 
-    @Transactional(transactionManager = "mysqlTransactionManager", readOnly = true)
+    @Transactional(transactionManager = "jtaTransactionManager", readOnly = true)
     fun findAll(): List<Company> = companyRepository.findAll()
 
-    @Transactional(transactionManager = "mysqlTransactionManager")
+    @Transactional(transactionManager = "jtaTransactionManager")
     fun create() {
         companyRepository.save(
             Company(
@@ -29,7 +29,7 @@ class CompanyService(
         )
     }
 
-    @Transactional(transactionManager = "mysqlTransactionManager")
+    @Transactional(transactionManager = "jtaTransactionManager")
     fun createWithError() {
         val random = Random(System.currentTimeMillis())
         employeeRepository.save(
