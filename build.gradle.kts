@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	id("org.springframework.boot") version "2.6.7"
-	id("io.spring.dependency-management") version "1.0.11.RELEASE"
+	id("org.springframework.boot") version "2.7.3"
+	id("io.spring.dependency-management") version "1.0.13.RELEASE"
 	kotlin("jvm") version "1.6.21"
 	kotlin("plugin.spring") version "1.6.21"
 	kotlin("plugin.jpa") version "1.6.21"
@@ -16,8 +16,8 @@ repositories {
 	mavenCentral()
 }
 
-extra["springCloudVersion"] = "2021.0.2"
-val openapiUI = "1.6.8"
+extra["springCloudVersion"] = "2021.0.4"
+val openapiUI = "1.6.11"
 
 dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -26,6 +26,7 @@ dependencies {
 
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-starter-jta-atomikos")
 
 	runtimeOnly("org.postgresql:postgresql")
 	runtimeOnly("mysql:mysql-connector-java")

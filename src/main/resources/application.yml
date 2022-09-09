@@ -2,19 +2,27 @@ spring:
   application:
     name: two-datasources
   postgres-datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/twodatasources
-    username: twodatasources
-    password: twodatasources
+    xa-properties:
+      url: jdbc:postgresql://localhost:5432/twodatasources
+      user: twodatasources
+      password: twodatasources
+    xa-data-source-class-name: org.postgresql.xa.PGXADataSource
+    unique-resource-name: 'postgres'
   mysql-datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/twodatasources
-    username: root
-    password: root
+    xa-properties:
+      url: jdbc:mysql://localhost:3306/twodatasources
+      user: root
+      password: root
+    xa-data-source-class-name: com.mysql.cj.jdbc.MysqlXADataSource
+    unique-resource-name: 'mysql'
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
-
+  jta:
+    enabled: true
+    service: com.atomikos.icatch.standalone.UserTransactionServiceFactory
+    max-actives: 200
+    enable-logging: true
 server:
   port: 1980
