@@ -8,18 +8,10 @@ To run databases in docker-compose, you can run:
 docker-compose up -d
 ```
 
-### Considerations
-To improve this solution, we can wrapper dataSources with Hikari to more detailed datasource configuration. 
+### JTA
+In this `main` branch code, we are add `atomikos` to manage the transactional context using `JtaTransactionManager`, instead of `PlatformTransactionManager`.
 
-```kotlin
-    private fun hikariConfig(dataSource: DataSource): HikariConfig {
-        val hikariConfig = HikariConfig()
-        hikariConfig.dataSource = dataSource
-        hikariConfig.isAutoCommit = false
-        return hikariConfig
-    }
+If you want to see a simpler solution with two transaction manager, can checkout the branch [simple-transaction-manager](tree/simple-transaction-manager)
 
-    fun hikariDataSource(dataSource: DataSource): HikariDataSource {
-        return HikariDataSource(hikariConfig(dataSource))
-    }
-```
+### References
+- https://medium.com/@inzuael/how-to-use-multiple-datasources-with-springboot-exposed-jpa-6bd705bfe994
